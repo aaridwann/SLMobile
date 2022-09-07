@@ -42,21 +42,17 @@ const BookingScreen = () => {
 
       <View style={{width:'100%', height:360, alignItems:'center', justifyContent:'flex-start', borderBottomWidth:2, borderBottomColor:'#6B705C'}}>
         <Text style={{marginVertical:10, fontSize:19, fontWeight:'500'}}>Selected Package</Text>
-
           <View style={{width:'80%', height:'50%', overflow:'hidden', borderRadius:15, backgroundColor:'lightblue'}}>
             <Image style={{width:'100%' , height:'100%', resizeMode:'cover'}} source={{uri:'https://i.pinimg.com/564x/66/53/a6/6653a6c10d7ef45207e1457ffadc6e88.jpg'}} />
           </View>
-
           <View style={{width:'80%', maxHeight:100, marginTop:10, backgroundColor:'white',padding:10, borderBottomRightRadius:20, borderBottomLeftRadius:20,}}>
             <Text style={{textAlign:'center', fontSize:15}}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia eos nulla laboriosam eaque facilis porro sapiente quod tempora mollitia. Error sint quisquam recusandae, ipsum nihil nesciunt non odit perspiciatis tempore!
             </Text>
           </View>
-
       </View>
 
       {/* === Calculation ===*/}
-
       <View style={{width:'100%', justifyContent:'center', backgroundColor:'white', borderBottomWidth:1, borderColor:'black', paddingVertical:15, alignItems:'center'}}>
           <View style={{flexDirection:'row', width:'60%', justifyContent:'space-between'}}>
             <Text>Price</Text>
