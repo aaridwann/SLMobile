@@ -6,6 +6,7 @@ import CardVendor from '../../Components/CardVendor'
 
 const MarketScreen = () => {
   return (
+<ScrollView>
 
     <View style={styles.con}>
 {/* === Navbar === */}
@@ -34,11 +35,9 @@ const MarketScreen = () => {
             </ScrollView>
         </View>
 
-
     </View>
 
-
-
+    </ScrollView>
 )
 }
 
