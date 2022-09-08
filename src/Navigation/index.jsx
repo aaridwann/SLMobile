@@ -4,6 +4,7 @@ import React from 'react';
 import AddPackageScreen from '../Screens/Add Package';
 import AddProjectScreen from '../Screens/Add Project';
 import BookingScreen from '../Screens/Booking';
+import DetailsProjectScreen from '../Screens/DetailProject';
 import DetailsPackageScreen from '../Screens/DetailsPackage';
 import FinishProjectVendorScreen from '../Screens/FinishProjectVendor';
 import FollowerScreen from '../Screens/Follower';
@@ -21,6 +22,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen options={{headerShown:false}} name="DetailProject" component={DetailsProjectScreen} />
         <Stack.Screen options={{headerShown:false}} name="PackageList" component={PackageListScreen} />
         <Stack.Screen options={{headerShown:false}} name="DetailsPackage" component={DetailsPackageScreen} />
         <Stack.Screen options={{headerShown:false}} name="AddPackage" component={AddPackageScreen} />
