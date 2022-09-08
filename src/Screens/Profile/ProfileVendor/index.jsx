@@ -57,7 +57,7 @@ const ProfileVendorScreen = () => {
         <ScrollView alwaysBounceVertical={true} centerContent={true} style={{ marginTop:5, width:'100%'}}>
             
     {/* === Category ==== */}
-        <View style={{width:'100%', backgroundColor:'#B7B7A4', paddingBottom:8 }}>
+        <View style={{width:'100%',paddingTop:10, backgroundColor:'#B7B7A4', paddingBottom:8 }}>
             <Text style={{marginLeft:20, fontSize:19}}>Service Available</Text>
             <View style={{ flexDirection:'row', marginTop:5, justifyContent:'flex-start', alignItems:'center', paddingHorizontal:10, flexWrap:'wrap', width:'100%'}}>
                 <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
@@ -82,13 +82,11 @@ const ProfileVendorScreen = () => {
         </View>
 
     {/* ==== List ==== */}
-
-    
-        <CardProjectComponent/>
-        <CardProjectComponent/>
-        <CardProjectComponent/>
-        <CardProjectComponent/>
-        <CardProjectComponent/>
+        <CardProjectComponent title='Finished Project'/>
+        <CardProjectComponent title='Wedding Package'/>
+        <CardProjectComponent title='Engagement Package'/>
+        <CardProjectComponent title='PreWedding Package' />
+        <CardProjectComponent title='Discount Package' />
     </ScrollView>
 
     </View>
