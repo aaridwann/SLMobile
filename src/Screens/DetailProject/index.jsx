@@ -64,8 +64,8 @@ const DetailsProjectScreen = () => {
         </View>
 
         {/* ==== Comment ==== */}
-        <View style={{width:'100%', borderTopLeftRadius:120, backgroundColor:'#B7B7A4', marginTop:20, alignItems:'center', paddingVertical:30}}>
-            {/* Card */}
+        
+        {/* <View style={{width:'100%', borderTopLeftRadius:120, backgroundColor:'#B7B7A4', marginTop:20, alignItems:'center', paddingVertical:30}}>
             <View style={{flexDirection:'row', width:'70%', justifyContent:'space-around', alignItems:'center'}}>
                 <View style={{ width:'90%'}}>
                     <View style={{flexDirection:'row', alignItems:'center'}}>
@@ -84,7 +84,7 @@ const DetailsProjectScreen = () => {
                     <Text>Comment</Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </View> */}
 
     </ScrollView>
   )

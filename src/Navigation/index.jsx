@@ -1,11 +1,13 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
+import AddEventScreen from '../Screens/Add Event';
 import AddPackageScreen from '../Screens/Add Package';
 import AddProjectScreen from '../Screens/Add Project';
 import BookingScreen from '../Screens/Booking';
 import DetailsProjectScreen from '../Screens/DetailProject';
 import DetailsPackageScreen from '../Screens/DetailsPackage';
+import DirectMessageScreen from '../Screens/Direct Message';
 import FinishProjectVendorScreen from '../Screens/FinishProjectVendor';
 import FollowerScreen from '../Screens/Follower';
 import FollowingScreen from '../Screens/Following';
@@ -22,6 +24,8 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="AddEvent" component={AddEventScreen} />
+        <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="DirectMessage" component={DirectMessageScreen} />
         <Stack.Screen options={{headerShown:false}} name="DetailProject" component={DetailsProjectScreen} />
         <Stack.Screen options={{headerShown:false}} name="PackageList" component={PackageListScreen} />
         <Stack.Screen options={{headerShown:false}} name="DetailsPackage" component={DetailsPackageScreen} />
