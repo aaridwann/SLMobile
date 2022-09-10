@@ -1,9 +1,9 @@
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import SearchComponent from '../../Components/Search'
 import NavbarComponent from '../../Components/NavMenu'
 import CardPackageComponent from '../../Components/CardPackage'
-
+const falseData = [1,2,3,4,5,6,6,7]
 const PackageListScreen = () => {
   return (
 
@@ -25,28 +25,15 @@ const PackageListScreen = () => {
         </View>
 
         {/* ==== Card ==== */}
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ minWidth:'100%', justifyContent:'center', alignItems:'center'}} >
-            <View style={{width:'90%', justifyContent:'center', alignItems:'center',marginTop:20}}>
-                <TouchableOpacity style={{marginVertical:10}}>
-                    <CardPackageComponent/>
-                </TouchableOpacity>
-                <TouchableOpacity style={{marginVertical:10}}>
-                    <CardPackageComponent/>
-                </TouchableOpacity>
-                <TouchableOpacity style={{marginVertical:10}}>
-                    <CardPackageComponent/>
-                </TouchableOpacity>
-                <TouchableOpacity style={{marginVertical:10}}>
-                    <CardPackageComponent/>
-                </TouchableOpacity>
-                <TouchableOpacity style={{marginVertical:10}}>
-                    <CardPackageComponent/>
-                </TouchableOpacity>
-                <TouchableOpacity style={{marginVertical:10}}>
-                    <CardPackageComponent/>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+        <FlatList 
+        showsVerticalScrollIndicator={false} contentContainerStyle={{ minWidth:'100%', justifyContent:'center', alignItems:'center'}}
+        data={falseData}
+        renderItem={(data) => 
+        <TouchableOpacity style={{marginVertical:10}}>
+            <CardPackageComponent/>
+        </TouchableOpacity> }
+        keyExtractor={(data,i) => i}
+        />
 
 
     </View>

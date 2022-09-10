@@ -9,7 +9,7 @@ const DirectMessageScreen = () => {
 
   return (
     
-    <ScrollView contentContainerStyle={{flex:1, alignItems:'center'}}>
+    <View style={{ alignItems:'center',flex:1}}>
         <NavbarComponent backgroundColor={'#B7B7A4'} title={'Direct Message'}/>
         <View style={{width:'100%', paddingBottom:'25%', justifyContent:'center',}}>
            
@@ -32,7 +32,7 @@ const DirectMessageScreen = () => {
             </View>
 
         </View>
-    </ScrollView>
+    </View>
   )
 }
 

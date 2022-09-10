@@ -16,7 +16,7 @@ export default TopScreen
 const styles = StyleSheet.create({
     con:{
         alignItems:'center',
-        paddingTop:20,
+        // paddingTop:20,
         width:'100%',
         flex:1,
         // height:'30%',

@@ -1,6 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
 import AddEventScreen from '../Screens/Add Event';
 import AddPackageScreen from '../Screens/Add Package';
 import AddProjectScreen from '../Screens/Add Project';
@@ -19,12 +20,25 @@ import PackageListScreen from '../Screens/PackageList';
 import ProfileClientScreen from '../Screens/Profile/ProfileClient';
 import ProfileVendorScreen from '../Screens/Profile/ProfileVendor';
 import RegisterScreen from '../Screens/Register';
+import SplashScreen from '../Screens/Splash Screen';
 
 const Stack = createNativeStackNavigator();
 const Navigation = () => {
+  const {auth} = useContext(AuthContext)
+  console.log(auth)
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {auth.loading ? <Stack.Screen options={{headerShown:false}} name="Splash" component={SplashScreen} /> : 
+        !auth.token ? 
+        <>
+        <Stack.Screen options={{headerShown:false, statusBarColor:'#6B705C'}} name="Login" component={LoginScreen} />
+        <Stack.Screen options={{headerShown:false,animation:'slide_from_right'}} name="Register" component={RegisterScreen} />
+        </>
+        :
+        <>
+        <Stack.Screen options={{headerShown:false, statusBarColor:'#6B705C'}} name="Market" component={MarketScreen} />
+        <Stack.Screen options={{headerShown:false}} name="ProfileClient" component={ProfileClientScreen} />
         <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="DetailProjectVendor" component={DetailProjectVendorScreen} />
         <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="AddEvent" component={AddEventScreen} />
         <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="DirectMessage" component={DirectMessageScreen} />
@@ -38,11 +52,9 @@ const Navigation = () => {
         <Stack.Screen options={{headerShown:false}} name="Following" component={FollowingScreen} />
         <Stack.Screen options={{headerShown:false}} name="ProfileVendor" component={ProfileVendorScreen} />
         <Stack.Screen options={{headerShown:false}} name="Booking" component={BookingScreen} />
-        <Stack.Screen options={{headerShown:false}} name="Market" component={MarketScreen} />
-        <Stack.Screen options={{headerShown:false}} name="Register" component={RegisterScreen} />
-        <Stack.Screen options={{headerShown:false}} name="Login" component={LoginScreen} />
-        <Stack.Screen options={{headerShown:false}} name="ProfileClient" component={ProfileClientScreen} />
         <Stack.Screen options={{headerShown:false}} name="Home" component={HomeScreen} />
+        </>
+      }
       </Stack.Navigator>
     </NavigationContainer>
   );

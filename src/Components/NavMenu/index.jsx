@@ -10,12 +10,10 @@ const NavbarComponent = ({backgroundColor='lightblue',title,data=dataEvent,value
     const [show,setShow] = useState(false)
     const height = useRef(new Animated.Value(0)).current;
 
-    useEffect(() => {
-        Animated.spring(height,{
-            toValue:show ? 499 : 0,
-            delay:100
-        }).start()
-    },[show])
+    function changeHandler () {
+      setShow(!show)
+      Animated.spring(height,{toValue:show ? 499 : 0, delay:100, useNativeDriver:false}).start()
+    }
 
     const styles = StyleSheet.create({
       con: {
@@ -34,12 +32,14 @@ const NavbarComponent = ({backgroundColor='lightblue',title,data=dataEvent,value
     return (
     <>
     <View style={styles.con}>
-      <TouchableOpacity onPress={() => setShow(!show)}>
+      <TouchableOpacity onPress={changeHandler}>
         <Ionicons name={'menu-outline'} size={50} color={'white'} />
       </TouchableOpacity>
       {title && <Text style={{ fontSize:20, color:'white', fontWeight:'500', textAlign:'center', margin:'auto' }}>{title}</Text> }
     </View>
-    <Animated.View style={{ left:height, display:`${show ? 'none' : 'flex'}`, justifyContent:'space-evenly', alignItems:'center', height:'auto', paddingBottom:20, width:'100%', backgroundColor:backgroundColor}}>
+
+    
+    <Animated.View style={{ left:height, display:`${show ? 'flex' : 'none'}`, justifyContent:'space-evenly', alignItems:'center', height:'auto', paddingBottom:20, width:'100%', backgroundColor:backgroundColor}}>
 
       <FlatList
         data={data}

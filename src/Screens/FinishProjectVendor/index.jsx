@@ -67,9 +67,10 @@ const FinishProjectVendorScreen = () => {
         {/* ==== Content ==== */}
         <ScrollView showsVerticalScrollIndicator={false} centerContent={true} bouncesZoom={true}>
             <View style={{flexWrap:'wrap', paddingBottom:50, flexDirection:'row', justifyContent:'center', overflow:'scroll'}}>
-                {content.map((data, i) => (<TouchableOpacity><Image key={i} style={{ resizeMode:'cover', width:130, height:130,}} source={{uri:data}}/></TouchableOpacity>))}
+                {content.map((data, i) => (<TouchableOpacity key={i}><Image style={{ resizeMode:'cover', width:130, height:130,}} source={{uri:data}}/></TouchableOpacity>))}
             </View>
         </ScrollView>
+
 
     </View>
   )
