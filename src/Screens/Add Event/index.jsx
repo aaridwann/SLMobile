@@ -8,6 +8,7 @@ import moment from 'moment'
 
 
 const dataVendor = ['photography','videoragphy','makeup artist', 'decoration']
+const EventCategory = ['wedding','prewedding','engagement','party']
 
 const AddEventScreen = () => {
     const [finalData,setFinalData] = useState({
@@ -19,8 +20,8 @@ const AddEventScreen = () => {
     })
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(false)
-
     const [data,setData] = useState([])
+  
     function Add(state,value){
         if(state){
             setFinalData({...finalData, vendorNeed:[...data,value]})
@@ -71,7 +72,7 @@ const AddEventScreen = () => {
         {/* ==== Category Event ==== */}
         <View style={{width:'90%', borderBottomWidth:1.5, borderColor:'#B7B7A4', paddingBottom:20, marginVertical:10, alignItems:'center'}}>
             <Text style={{fontSize:27, color:'#B7B7A4'}}>Category Event</Text>
-            <DropDownComponent style={{marginTop:10}} color='#B7B7A4' select={(e) => setFinalData({...finalData, categoryEvent:e})}/>
+            <DropDownComponent dataValue={EventCategory} style={{marginTop:10}} color='#B7B7A4' select={(e) => setFinalData({...finalData, categoryEvent:e})}/>
         </View>
 
         {/* ==== Vendor Need ==== */}

@@ -5,6 +5,7 @@ import AddEventScreen from '../Screens/Add Event';
 import AddPackageScreen from '../Screens/Add Package';
 import AddProjectScreen from '../Screens/Add Project';
 import BookingScreen from '../Screens/Booking';
+import DetailProjectVendorScreen from '../Screens/Detail Vendor';
 import DetailsProjectScreen from '../Screens/DetailProject';
 import DetailsPackageScreen from '../Screens/DetailsPackage';
 import DirectMessageScreen from '../Screens/Direct Message';
@@ -24,6 +25,7 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="DetailProjectVendor" component={DetailProjectVendorScreen} />
         <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="AddEvent" component={AddEventScreen} />
         <Stack.Screen options={{headerShown:false, statusBarHidden:true, animation:'slide_from_right' }} name="DirectMessage" component={DirectMessageScreen} />
         <Stack.Screen options={{headerShown:false}} name="DetailProject" component={DetailsProjectScreen} />
