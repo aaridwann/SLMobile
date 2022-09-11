@@ -1,4 +1,4 @@
-import {Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import CardA from './CardA';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,14 +8,29 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import 'moment/locale/id'
 import dummyEvent from '../../../../dummy/event';
 
-const ProfileClientScreen = () => {
-    // console.log(moment(new Date(2022,7,11)).locale('id').format('DD MMMM YYYY'))
-    // console.log(new Date(2022,7,11))
+const ProfileClientScreen = ({navigation}) => {
   return (
     <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center'}}>
-      <View style={{alignSelf: 'flex-start', width: '75%', height: '47%'}}>
-        <CardA />
+      <View style={{alignSelf: 'flex-start',flexDirection:'row', justifyContent:'space-between', width: '100%', height: '47%'}}>
+        
+        <View style={{ width:'75%'}}>
+          <CardA />
+        </View>
+
+        <View style={{ height:'50%', marginRight:20, alignItems:'center', justifyContent:'space-evenly'}}>
+          <TouchableOpacity onPress={() => navigation.push('Setting')}  style={{alignItems:'center'}}>
+            <Ionicons name={"settings-outline"} size={30} color={'#B7B7A4'} />
+            <Text style={{color:'#B7B7A4', fontWeight:'700'}}>Setting</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.push('DirectMessage')} style={{alignItems:'center'}}>
+            <Ionicons name={"chatbubbles-outline"} size={30} color={'#B7B7A4'} />
+            <Text style={{color:'#B7B7A4', fontWeight:'700'}}>Message</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
+      
 
       <LinearGradient colors={['#B7B7A4', '#6B705C']} style={styles.card}>
         <View style={{ flexDirection:'row', alignItems:'center'}}>

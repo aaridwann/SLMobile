@@ -1,6 +1,8 @@
 import { FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useWindowDimensions } from 'react-native';
+
 
 const data = ['wedding','prewedding','engagement','party']
 const content = [
@@ -31,6 +33,9 @@ const content = [
 ]
 
 const FinishProjectVendorScreen = () => {
+
+    const {width} = useWindowDimensions()
+    console.log(width/3)
   return (
     <View style={{flex:1}}>
 
@@ -66,8 +71,8 @@ const FinishProjectVendorScreen = () => {
 
         {/* ==== Content ==== */}
         <ScrollView showsVerticalScrollIndicator={false} centerContent={true} bouncesZoom={true}>
-            <View style={{flexWrap:'wrap', paddingBottom:50, flexDirection:'row', justifyContent:'center', overflow:'scroll'}}>
-                {content.map((data, i) => (<TouchableOpacity key={i}><Image style={{ resizeMode:'cover', width:130, height:130,}} source={{uri:data}}/></TouchableOpacity>))}
+            <View style={{flexWrap:'wrap', flexDirection:'row', justifyContent:'center', overflow:'scroll'}}>
+                {content.map((data, i) => (<TouchableOpacity key={i}><Image style={{ resizeMode:'cover', width:width/3, height:width/3,}} source={{uri:data}}/></TouchableOpacity>))}
             </View>
         </ScrollView>
 

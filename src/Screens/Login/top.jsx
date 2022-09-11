@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
         // paddingTop:20,
         width:'100%',
         flex:1,
-        // height:'30%',
+        elevation: 50,
+        shadowColor: '#2c2e28',
         backgroundColor:'#6B705C',
         borderBottomLeftRadius:200,
         borderBottomRightRadius:200

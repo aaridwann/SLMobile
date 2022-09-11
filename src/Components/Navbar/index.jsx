@@ -3,7 +3,7 @@ import React from 'react';
 import Ionicons  from 'react-native-vector-icons/Ionicons'
 
 
-export default function NavbarComponent({backgroundColor, title}) {
+export default function NavbarComponent({backgroundColor, title, navigation}) {
     const {width} = useWindowDimensions()
   return (
     <View
@@ -16,7 +16,7 @@ export default function NavbarComponent({backgroundColor, title}) {
         width: '100%',
         justifyContent: 'center',
       }}>
-      <TouchableOpacity style={{alignSelf: 'flex-start', position:'absolute', left:4}}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={{alignSelf: 'flex-start', position:'absolute', left:4}}>
         <Ionicons name="arrow-back" size={40} color={backgroundColor == 'white' ? '#B7B7A4' : 'white'} />
       </TouchableOpacity>
       <Text

@@ -39,7 +39,7 @@ const LoginScreen = ({navigation}) => {
             <TopScreen />
         </View>
 
-        <View style={{width: '100%',marginTop:20,flex: 1,justifyContent: 'center',alignItems: 'center'}}>
+        <View style={{width: '100%', padding:20,marginTop:20,flex: 1, paddingBottom:50,justifyContent: 'center',alignItems: 'center'}}>
             <CardForm submit={Login} email={(e) => setData({...data, email:e})} password={e => setData({...data, password:e})} navigation={navigation} />
         </View>
     </LinearGradient>

@@ -10,9 +10,9 @@ const ChatComponents = ({id, message, date}) => {
             <Image style={{width:50, height:50, borderRadius:50}} source={{uri:"https://i.pinimg.com/564x/e6/38/fd/e638fdd53d71f3e1201c0ca48289c658.jpg"}}/>
 
         <View style={{ justifyContent:'center', alignItems:'center', maxWidth:'60%', marginHorizontal:10}}>
-          <Text style={{ alignSelf:id !== 'user' ? 'flex-start' : 'flex-end', fontSize:15, fontWeight:'bold'}}>{id}</Text>
+          <Text style={{ color:'#B7B7A4', alignSelf:id !== 'user' ? 'flex-start' : 'flex-end', fontSize:15, fontWeight:'bold'}}>{id}</Text>
           <TouchableOpacity><Text style={{ color:'white', borderRadius:10, maxWidth:'100%', backgroundColor:'#B7B7A4', padding:10}}>{message}</Text></TouchableOpacity>
-          <Text style={{ alignSelf:id !== 'user' ? 'flex-start' : 'flex-end', fontSize:10, fontWeight:'bold'}}>{moment(date).startOf('hour').fromNow()}</Text>
+          <Text style={{ alignSelf:id !== 'user' ? 'flex-start' : 'flex-end', fontSize:10, color:'#B7B7A4', fontWeight:'bold'}}>{moment(date).startOf('hour').fromNow()}</Text>
         </View>
         
     </View>

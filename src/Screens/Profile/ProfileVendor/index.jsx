@@ -10,16 +10,16 @@ const ProfileVendorScreen = () => {
     
     {/* ==== Top ==== */}
         <View style={{width:'100%', height:height/2.9}}>
-                <ImageBackground style={{ width:400, height:'100%'}} resizeMode='cover' source={{uri:'https://i.pinimg.com/564x/57/ba/36/57ba36161ea1fe9d1a33140883fc06b3.jpg'}}>
+                <ImageBackground style={{ justifyContent:'space-between', width:'100%', height:'100%'}} resizeMode='cover' source={{uri:'https://i.pinimg.com/564x/57/ba/36/57ba36161ea1fe9d1a33140883fc06b3.jpg'}}>
             {/* === 1 === */}
             <View style={{ flexDirection:'row', width:'100%', justifyContent:'space-around', alignItems:'center', marginTop:20}}>
                 <Image style={{ width: 120,height: 120,borderRadius: 150 / 2,overflow: 'hidden',  borderRadius: 150 / 2,}} source={{uri:'https://i.pinimg.com/564x/16/50/75/16507562f619f4da91604bb0ceb7fccd.jpg'}}/>
                 <View >
                     <TouchableOpacity style={{ margin:5, justifyContent:'center', paddingVertical:4, alignItems:'center', borderRadius:10, width:80, backgroundColor:'white'}}>
-                        <Text>Follow</Text>
+                        <Text style={{color:'#B7B7A4', fontWeight:'500'}}>Follow</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={{margin:5, justifyContent:'center',  paddingVertical:4, alignItems:'center', borderRadius:10, width:80, backgroundColor:'white'}}>
-                        <Text>Message</Text>
+                        <Text style={{color:'#B7B7A4', fontWeight:'500'}}>Message</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -37,9 +37,11 @@ const ProfileVendorScreen = () => {
             </LinearGradient>
                 </ImageBackground>
         </View>
+    
+    <ScrollView stickyHeaderHiddenOnScroll={true} alwaysBounceVertical={true} centerContent={true} style={{ width:'100%'}}>
 
     {/* === Followers === */}
-        <View style={{flexDirection:'row', width:width, marginTop:8, backgroundColor:'#B7B7A4', paddingVertical:15, justifyContent:'space-around'}}>
+        <View style={{flexDirection:'row', width:width, marginTop:4, backgroundColor:'#B7B7A4', paddingVertical:15, justifyContent:'space-around'}}>
             <TouchableOpacity style={{ borderRadius:10, alignItems:'center',paddingVertical:5, width:100, backgroundColor:'#B7B7A4'}}>
                 <Text style={{color:'white'}}>522</Text>
                 <Text style={{color:'white'}}>Followers</Text>
@@ -54,10 +56,10 @@ const ProfileVendorScreen = () => {
             </TouchableOpacity>
         </View>
 
-        <ScrollView alwaysBounceVertical={true} centerContent={true} style={{ marginTop:5, width:'100%'}}>
+       
             
     {/* === Category ==== */}
-        <View style={{width:'100%',paddingTop:10, backgroundColor:'#B7B7A4', paddingBottom:8 }}>
+        <View style={{width:'100%',paddingTop:10, marginTop:4, backgroundColor:'#B7B7A4', paddingBottom:8 }}>
             <Text style={{marginLeft:20, fontSize:19}}>Service Available</Text>
             <View style={{ flexDirection:'row', marginTop:5, justifyContent:'flex-start', alignItems:'center', paddingHorizontal:10, flexWrap:'wrap', width:'100%'}}>
                 <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
@@ -80,7 +82,9 @@ const ProfileVendorScreen = () => {
                 </TouchableOpacity>
             </View>
         </View>
-
+    
+    
+    
     {/* ==== List ==== */}
         <CardProjectComponent title='Finished Project'/>
         <CardProjectComponent title='Wedding Package'/>

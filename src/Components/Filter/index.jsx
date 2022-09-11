@@ -3,12 +3,12 @@ import React from 'react'
 
 const FilterBar = ({data,value,colorText='white'}) => {
   return (
-    <View style={{ flexDirection:'row', width:'100%', justifyContent:'space-around', alignItems:'center'}}>
+    <View style={{ flexDirection:'row', width:'100%', justifyContent:'space-around', alignItems:'center', paddingLeft:10}}>
         <Text style={{color:'white', fontSize:25}}>Filter</Text>
 
 
     <FlatList
-      style={{ maxWidth:200, flex:1 }} 
+      style={{ maxWidth:300, flex:1, marginLeft:20 }} 
       showsHorizontalScrollIndicator={false} 
       horizontal={true} 
       alwaysBounceHorizontal={true}

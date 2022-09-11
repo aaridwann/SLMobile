@@ -12,10 +12,10 @@ return (
 
       <View style={styles.A}>
         <View style={{ justifyContent:'center', alignItems:'center'}}>
-          <Text style={{ fontSize:38, fontWeight:'bold', marginBottom:-10}}>{dateData.split(' ')[0]}</Text>
-          <Text style={{ fontWeight:'500'}}>{dateData.split(' ')[1].slice(0,3)}</Text>
+          <Text style={{ color:'#6B705C', fontSize:38, fontWeight:'bold', marginBottom:-10}}>{dateData.split(' ')[0]}</Text>
+          <Text style={{color:'#6B705C', fontWeight:'500'}}>{dateData.split(' ')[1].slice(0,3)}</Text>
         </View>
-        <Text>{category.toLocaleUpperCase()}</Text>
+        <Text style={{color:'#6B705C'}}>{category.toLocaleUpperCase()}</Text>
       </View>
 
       <View style={{flex:1, backgroundColor:'yellow'}}>

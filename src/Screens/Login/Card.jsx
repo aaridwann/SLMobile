@@ -11,9 +11,9 @@ const CardForm = ({navigation,email,password,submit}) => {
       {/* ==== Input ==== */}
       <View style={{ alignItems:'center'}}>
         <Text>EMAIL</Text>
-        <TextInput onChangeText={data => email(data)} style={{ width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='username' />
+        <TextInput onChangeText={data => email(data)} style={{ color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='username' />
         <Text style={{marginTop:10}}>PASSWORD</Text>
-        <TextInput onSubmitEditing={submit} onChangeText={(data) => password(data)} secureTextEntry={true} style={{ width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='password' />
+        <TextInput onSubmitEditing={submit} onChangeText={(data) => password(data)} secureTextEntry={true} style={{color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='password' />
         <TouchableOpacity onPress={submit} style={{marginTop:20, borderRadius:8, backgroundColor:'#6B705C',paddingHorizontal:12, paddingVertical:5}}>
             <Text style={{color:'white', fontWeight:'500'}}>LOGIN</Text>
         </TouchableOpacity>
@@ -43,6 +43,8 @@ const styles = StyleSheet.create({
         borderRadius:50,
         justifyContent:'space-around',
         backgroundColor:'#B7B7A4',
-        padding:10
+        padding:10,
+        elevation: 30,
+        shadowColor: '#474a3d'
     }
 })
