@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, FlatList } from 'react-native'
 import React, { useContext } from 'react'
 import NavbarComponent from '../../Components/Navbar'
-import LogoutFunction from '../../Utils/Logout/Logout'
 import { AuthContext } from '../../Context/AuthContext'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import AppAxios from '../../Utils/AppAxios'
 const menu = ['account','payment','logout',]
 
 
@@ -15,9 +15,10 @@ const SettingScreen = ({navigation}) => {
             case 'payment':
                 return console.log('logout');
             case 'logout':
-                    setAuth({user:false,token:false,loading:false})
-                    AsyncStorage.removeItem('auth')
-                    return console.log(auth);
+                    AppAxios.delete(`/auth/logout`).then((res) => {
+                        AsyncStorage.removeItem('auth')
+                        return setAuth({user:false,token:false,loading:false})
+                    }).catch((err) => console.log(err.response))
             default:
                 break;
         }
@@ -27,7 +28,7 @@ const SettingScreen = ({navigation}) => {
         <NavbarComponent navigation={navigation} backgroundColor={'#B7B7A4'} title={'Setting'}/>
         
             <FlatList
-            style={{flex:1 , width:'90%'}}
+                style={{flex:1 , width:'90%'}}
             contentContainerStyle={{width:'100%',flex:1, justifyContent:'center'}}
                 data={menu}
                 renderItem={(data) => (

@@ -18,17 +18,19 @@ const LoginScreen = ({navigation}) => {
 
   async function Login (){
     setLoading(true)
-    try {
       const res = await axios.post(LOGIN_URL,data)
-      const {token} = res.data
-      const decode = jwt_decode(token)
-      const user = {user:decode,token:token}
-      await AsyncStorage.setItem('auth',JSON.stringify(user))
-      setAuth({...auth,user:decode,token:token})
-    } catch (error) {
-      setMessage('Wrong email or password')
-    }
-    setLoading(false)
+      .then(async res => {
+        const {token} = res.data
+        const decode = jwt_decode(token)
+        const user = {user:decode,token:token}
+        await AsyncStorage.setItem('auth',JSON.stringify(user))
+        setAuth({...auth,user:decode,token:token})
+        setLoading(false)
+      })
+      .catch((err) =>{
+        setMessage(err.response.data.message)
+        setLoading(false)
+        })
   }
 
   useEffect(() => {
@@ -38,9 +40,7 @@ const LoginScreen = ({navigation}) => {
   },[message])
 
 
-console.log(message)
   return loading ?
-  //  <DotIndicator color='white' /> 
   <SplashScreen/>
    : (
   <ScrollView style={{flex:1, backgroundColor:'#6B705C', width:'100%', paddingBottom:10}}>
