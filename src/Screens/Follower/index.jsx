@@ -1,6 +1,7 @@
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import NavbarComponent from '../../Components/Navbar';
 
 const data = [
   {
@@ -101,23 +102,18 @@ const data = [
   }
 ]
 
-const FollowerScreen = () => {
+const FollowerScreen = ({navigation}) => {
   return (
     <View style={{flex:1}}>
 
       {/* === Top back button === */}
-      <View style={{paddingVertical:2, paddingHorizontal:8, backgroundColor:'lightblue', flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}}>
-        <TouchableOpacity style={{ }}>
-          <Ionicons name={"arrow-back"} size={40} color={'white'} />
-        </TouchableOpacity>
-        <Text style={{ fontWeight:'bold', color:'white', marginLeft:'30%'}}>Follower</Text>
-      </View>
+      <NavbarComponent navigation={navigation} backgroundColor={'#B7B7A4'} title={'Follower'}/>
 
       {/* === List === */}
       <FlatList
         renderItem={(data) => <Card name={data.item.name} img={data.item.img}/>}
         data={data}
-        keyExtractor={(data) => data.img}
+        keyExtractor={(data,i) => i}
       />
 
     </View>
@@ -130,17 +126,17 @@ const styles = StyleSheet.create({})
 
 function Card({name='Ridwan',img}){
   return(
-    <View style={{ flexDirection:'row', paddingVertical:10, justifyContent:'space-between', paddingHorizontal:20, alignItems:'center', borderBottomWidth:2, borderColor:'lightblue' }}>
+    <View style={{ flexDirection:'row', paddingVertical:10, justifyContent:'space-between', paddingHorizontal:20, alignItems:'center', borderBottomWidth:2, borderColor:'#B7B7A4' }}>
         <View style={{flexDirection:'row', alignItems:'center'}}>
           <TouchableOpacity>
             <Image style={{ resizeMode:'cover', borderRadius:50 ,width:50,height:50, marginRight:10}} source={{uri:img}}/>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Text style={{ fontWeight:'bold', fontSize:18}}>{name}</Text>
+            <Text style={{ fontWeight:'bold',color:'#B7B7A4', fontSize:18}}>{name}</Text>
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={{ backgroundColor:'lightblue', paddingHorizontal:8, paddingVertical:4, borderRadius:8}}>
+        <TouchableOpacity style={{ backgroundColor:'#B7B7A4', paddingHorizontal:8, paddingVertical:4, borderRadius:8}}>
           <Text style={{ fontWeight:'bold', color:'white'}}>Follow</Text>
         </TouchableOpacity>
     </View>

@@ -1,10 +1,25 @@
-import { useWindowDimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native'
-import React from 'react'
+import { useWindowDimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, FlatList } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import CardProjectComponent from '../../../Components/CardProject'
+import dataProjectFinish from '../../../../dummy/DataProjectFinish'
+const category = ['wedding','prewedding','engagement','all']
 
-const ProfileVendorScreen = () => {
+const ProfileVendorScreen = ({route}) => {
+    const data = route.params
     const {height,width} = useWindowDimensions()
+    const [filterCategory,setFilterCategory] = useState('all')
+    const [dataFilter,setDataFilter] = useState([])
+
+    function filter () {
+        setDataFilter(filterCategory == 'all' ? [] : dataProjectFinish.filter((data) => data.category == filterCategory))
+    }
+
+    useEffect(() => {
+        filter()
+    },[filterCategory])
+
+    console.log(data);
   return (
     <View style={{ flex:1, alignItems:'center'}}>
     
@@ -38,7 +53,7 @@ const ProfileVendorScreen = () => {
                 </ImageBackground>
         </View>
     
-    <ScrollView stickyHeaderHiddenOnScroll={true} alwaysBounceVertical={true} centerContent={true} style={{ width:'100%'}}>
+    <ScrollView stickyHeaderIndices={[1]} showsVerticalScrollIndicator={false} alwaysBounceVertical={true} centerContent={true} style={{ flex:1, width:'100%'}}> 
 
     {/* === Followers === */}
         <View style={{flexDirection:'row', width:width, marginTop:4, backgroundColor:'#B7B7A4', paddingVertical:15, justifyContent:'space-around'}}>
@@ -56,42 +71,33 @@ const ProfileVendorScreen = () => {
             </TouchableOpacity>
         </View>
 
-       
+        
             
     {/* === Category ==== */}
         <View style={{width:'100%',paddingTop:10, marginTop:4, backgroundColor:'#B7B7A4', paddingBottom:8 }}>
-            <Text style={{marginLeft:20, fontSize:19}}>Service Available</Text>
+            <Text style={{marginLeft:20, fontSize:19, color:'white'}}>Service Available</Text>
             <View style={{ flexDirection:'row', marginTop:5, justifyContent:'flex-start', alignItems:'center', paddingHorizontal:10, flexWrap:'wrap', width:'100%'}}>
-                <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
-                    <Text style={{ color:'#a2a384'}}>Wedding</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
-                    <Text style={{ color:'#a2a384'}}>Wedding</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
-                    <Text style={{ color:'#a2a384'}}>Wedding</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
-                    <Text style={{ color:'#a2a384'}}>Wedding</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
-                    <Text style={{ color:'#a2a384'}}>Wedding</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
-                    <Text style={{ color:'#a2a384'}}>Wedding</Text>
-                </TouchableOpacity>
+                {category.map((data,i) => (
+                    <TouchableOpacity key={i} onPress={() => setFilterCategory(data)} style={{ paddingHorizontal:8, margin:5, paddingVertical:4, backgroundColor:filterCategory == data ? '#a2a384' : 'rgba(255, 255, 255, 0.5)' ,color:'white', borderRadius:10}}>
+                        <Text style={{ color:filterCategory == data ? 'white': '#a2a384'}}>{data}</Text>
+                    </TouchableOpacity>
+                    ))}
             </View>
         </View>
     
-    
-    
+
     {/* ==== List ==== */}
-        <CardProjectComponent title='Finished Project'/>
-        <CardProjectComponent title='Wedding Package'/>
-        <CardProjectComponent title='Engagement Package'/>
-        <CardProjectComponent title='PreWedding Package' />
-        <CardProjectComponent title='Discount Package' />
-    </ScrollView>
+        <FlatList
+            alwaysBounceVertical={true} centerContent={true} style={{ width:'100%'}}
+            contentContainerStyle={{marginTop:4}}
+            data={dataFilter.length !== 0 ? dataFilter : dataProjectFinish}
+            renderItem={data => { 
+            return <CardProjectComponent title={data.item.category} data={data.item.data}/>
+            }}
+            keyExtractor={(data,i) => i}
+        />
+       
+       </ScrollView>
 
     </View>
   )

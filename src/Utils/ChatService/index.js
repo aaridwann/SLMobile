@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 
-export const socket = io("http://192.168.100.13:8000");
+export const socket = io("https://story-life.herokuapp.com/");
 
 export default function ChatService (){
     return socket.on("connect", () => {

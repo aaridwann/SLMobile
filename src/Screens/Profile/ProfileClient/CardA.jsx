@@ -1,9 +1,11 @@
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+const bio = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut impedit quas aperiam sint quasi quibusdam quidem? Fugiat, impedit illo reiciendis distinctio ipsam quo quos mollitia. Explicabo facere eius aspernatur qui.'
 
-const CardA = () => {
-    const bio = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut impedit quas aperiam sint quasi quibusdam quidem? Fugiat, impedit illo reiciendis distinctio ipsam quo quos mollitia. Explicabo facere eius aspernatur qui.'
+const CardA = ({navigation}) => {
+
+
   return (
     <LinearGradient colors={['#B7B7A4','#6B705C']} style={styles.cont}>
         {/* === First === */}
@@ -33,7 +35,19 @@ const CardA = () => {
         <Pressable>
         <Text style={styles.state}>Client</Text>
         </Pressable>
-        <Text style={styles.bio}>{bio.slice(0,100)}{'... Read more'}</Text>
+        <Text style={styles.bio}>{bio.slice(0,70)}{'... Read more'}</Text>
+      
+      <View style={{ flexDirection:'row',marginLeft:10, width:'50%', marginTop:20, justifyContent:'space-between'}}>
+            <TouchableOpacity onPress={() => navigation.push('Following')} style={{ alignItems:'center'}}>
+              <Text style={{ color:'white',fontSize:15 }}>Following</Text>
+              <Text style={{ color:'white',fontSize:15, fontWeight:'800' }}>548</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.push('Follower')} style={{ alignItems:'center'}}>
+              <Text style={{ color:'white',fontSize:15 }}>Follower</Text>
+              <Text style={{ color:'white',fontSize:15, fontWeight:'800' }}>128</Text>
+            </TouchableOpacity>
+      </View>
 
     </LinearGradient>
   );
@@ -48,8 +62,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical:5,
     borderBottomRightRadius: 250,
-
-  },
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.36,
+    shadowRadius: 6.68,
+    elevation: 11,
+     },
   first: {
     justifyContent: 'center',
     flexDirection: 'row',

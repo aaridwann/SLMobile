@@ -1,7 +1,15 @@
 import { Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+import emailValidation from '../../Utils/EmailVerify'
 
 const CardForm = ({navigation,email,password,submit}) => {
+    const [data,setData] = useState({email:'',password:''})
+    const [alert,setAlert] = useState(false)
+
+    function validate(){
+       data.email.length>0 && setAlert(!emailValidation(data.email) ? true : false ) 
+    }
+ 
   return (
     <View style={styles.con}>
      
@@ -11,13 +19,18 @@ const CardForm = ({navigation,email,password,submit}) => {
       {/* ==== Input ==== */}
       <View style={{ alignItems:'center'}}>
         <Text>EMAIL</Text>
-        <TextInput onChangeText={data => email(data)} style={{ color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='username' />
+          <TextInput onBlur={validate } onChangeText={data => [email(data), setData(x =>({...x,email:data}))  ]} style={{ borderColor:'red', borderWidth:alert ? 1 : 0, color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='username' />
+
         <Text style={{marginTop:10}}>PASSWORD</Text>
-        <TextInput onSubmitEditing={submit} onChangeText={(data) => password(data)} secureTextEntry={true} style={{color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='password' />
+          <TextInput onSubmitEditing={submit} onChangeText={(data) => password(data)} secureTextEntry={true} style={{color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='password' />
+
+
         <TouchableOpacity onPress={submit} style={{marginTop:20, borderRadius:8, backgroundColor:'#6B705C',paddingHorizontal:12, paddingVertical:5}}>
             <Text style={{color:'white', fontWeight:'500'}}>LOGIN</Text>
         </TouchableOpacity>
       </View>
+
+
       {/* ==== Register button ==== */}
       <View style={{ justifyContent:'space-around', height:100, alignItems:'center'}}>
         <TouchableOpacity style={{flexDirection:'row', alignItems:'center', justifyContent:'center',width:180, paddingVertical:8, borderRadius:8, backgroundColor:'rgba(255, 255, 255, 0.56)' }}>

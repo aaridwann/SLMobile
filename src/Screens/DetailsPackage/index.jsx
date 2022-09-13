@@ -9,7 +9,6 @@ const desc = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea in obc
 
 const DetailsPackageScreen = () => {
     const {height} = useWindowDimensions()
-    // console.log(height)
   return (
     <ScrollView style={{flex:1,backgroundColor:'#6B705C'}}>
         <View style={{ justifyContent:'center',alignItems:'center'}}>
@@ -35,6 +34,7 @@ const DetailsPackageScreen = () => {
 
             </ImageBackground>
         </View>
+
 
         {/* ==== BOTTOM ==== */}
         <View style={{ width:'90%', marginTop:20, borderBottomWidth:1, borderColor:'white', alignItems:'center', justifyContent:'center'}}>

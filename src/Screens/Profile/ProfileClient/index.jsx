@@ -11,10 +11,10 @@ import dummyEvent from '../../../../dummy/event';
 const ProfileClientScreen = ({navigation}) => {
   return (
     <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center'}}>
-      <View style={{alignSelf: 'flex-start',flexDirection:'row', justifyContent:'space-between', width: '100%', height: '47%'}}>
+      <View style={{alignSelf: 'flex-start',flexDirection:'row', justifyContent:'space-between', width: '100%', height: '50%'}}>
         
         <View style={{ width:'75%'}}>
-          <CardA />
+          <CardA navigation={navigation} />
         </View>
 
         <View style={{ height:'50%', marginRight:20, alignItems:'center', justifyContent:'space-evenly'}}>
@@ -65,6 +65,15 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'flex-end',
     paddingLeft: '8%',
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 12,
+},
+shadowOpacity: 0.58,
+shadowRadius: 16.00,
+
+elevation: 50,
   },
   titleCard: {
     color: 'white',
