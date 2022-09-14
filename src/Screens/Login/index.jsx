@@ -10,9 +10,10 @@ import { AuthContext } from '../../Context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SplashScreen from '../Splash Screen';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({route,navigation}) => {
+  const {email} = route.params || ''
   const {auth,setAuth} = useContext(AuthContext)
-  const [data,setData] = useState({email:'',password:''})
+  const [data,setData] = useState({email: email ? email : '' ,password:''})
   const [loading,setLoading] = useState(false)
   const [message,setMessage] = useState('')
 
@@ -39,6 +40,8 @@ const LoginScreen = ({navigation}) => {
     },3000)
   },[message])
 
+  console.log(data);
+  console.log(email);
 
   return loading ?
   <SplashScreen/>
@@ -49,7 +52,7 @@ const LoginScreen = ({navigation}) => {
             <TopScreen />
         </View>
         <View style={{width: '100%', padding:20,marginTop:20,flex: 1, paddingBottom:50,justifyContent: 'center',alignItems: 'center'}}>
-            <CardForm submit={Login} email={(e) => setData({...data, email:e})} password={e => setData({...data, password:e})} navigation={navigation} />
+            <CardForm focusPassword={data.email.length>0 ? true: false} valueEmail={data.email} submit={Login} email={(e) => setData({...data, email:e})} password={e => setData({...data, password:e})} navigation={navigation} />
         </View>
         {message && 
         <Text style={{ position:'absolute', top:'28%', letterSpacing:2, backgroundColor:'rgba(255, 255, 255, 0.5)', fontSize:18, paddingHorizontal:20, paddingVertical:8, color:'#6B705C'}}>{message}</Text>}

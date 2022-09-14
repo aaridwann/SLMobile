@@ -15,18 +15,21 @@ AppAxios.interceptors.request.use(async function (config) {
     const {token} = data
      
     if(exp <= Date.now()){
-        await axios.get(`${BASE_URL}/auth/refreshtoken`).then(async (res) => {
+        await axios.get(`${BASE_URL}/auth/refreshtoken`)
+        .then(async (res) => {
         const decode = jwt_decode(res.data.token)
         const user = {user:decode,token:token}
         await AsyncStorage.setItem('auth',JSON.stringify(user))
-        return config.headers.Authorization = `Bearer ${res.data.token}`
+        config.headers.Authorization = `Bearer ${res.data.token}`
         })
+        .catch(err => alert(err))
     }
 
     return config;
   }, function (error) {
     // Do something with request error
-    return console.log(error.response);
+    alert(error.response)
+    return console.log(error.response)
   });
 
   export default AppAxios

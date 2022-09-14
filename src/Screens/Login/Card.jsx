@@ -2,7 +2,7 @@ import { Image, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View }
 import React, { useState } from 'react'
 import emailValidation from '../../Utils/EmailVerify'
 
-const CardForm = ({navigation,email,password,submit}) => {
+const CardForm = ({valueEmail,focusPassword,navigation,email,password,submit}) => {
     const [data,setData] = useState({email:'',password:''})
     const [alert,setAlert] = useState(false)
 
@@ -19,13 +19,13 @@ const CardForm = ({navigation,email,password,submit}) => {
       {/* ==== Input ==== */}
       <View style={{ alignItems:'center'}}>
         <Text>EMAIL</Text>
-          <TextInput onBlur={validate } onChangeText={data => [email(data), setData(x =>({...x,email:data}))  ]} style={{ borderColor:'red', borderWidth:alert ? 1 : 0, color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='username' />
+          <TextInput value={valueEmail} onBlur={validate } onChangeText={data => [email(data), setData(x =>({...x,email:data}))  ]} style={{ borderColor:'red', borderWidth:alert ? 1 : 0, color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='username' />
 
         <Text style={{marginTop:10}}>PASSWORD</Text>
-          <TextInput onSubmitEditing={submit} onChangeText={(data) => password(data)} secureTextEntry={true} style={{color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='password' />
+          <TextInput autoFocus={focusPassword} onSubmitEditing={submit} onChangeText={(data) => password(data)} secureTextEntry={true} style={{color:'black', width:200, backgroundColor:'white', textAlign:'center', marginTop:10, borderRadius:7}} placeholder='password' />
 
 
-        <TouchableOpacity onPress={submit} style={{marginTop:20, borderRadius:8, backgroundColor:'#6B705C',paddingHorizontal:12, paddingVertical:5}}>
+        <TouchableOpacity onPress={submit} style={{marginTop:20, borderRadius:4, backgroundColor:'#6B705C',paddingHorizontal:25, paddingVertical:10}}>
             <Text style={{color:'white', fontWeight:'500'}}>LOGIN</Text>
         </TouchableOpacity>
       </View>
