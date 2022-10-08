@@ -13,15 +13,30 @@ function AuthProvider({children}) {
   const [stateAuth, dispatchAuth] = useReducer(AuthReducer, initialUserState);
 
   async function GetAuth() {
-    const res = await AsyncStorage.getItem('auth');
-    if (!res)
-      return dispatchAuth({type: ActionTypeUser.doneFetch, payload: null});
-    return dispatchAuth({type: ActionTypeUser.doneFetch, payload: res});
+    try {
+      const res = JSON.parse(await AsyncStorage.getItem('auth'));
+      if (!res)
+        return dispatchAuth({
+          type: ActionTypeUser.errorFetch,
+          payload: {message: 'something error'},
+        });
+      return dispatchAuth({
+        type: ActionTypeUser.doneFetch,
+        payload: {token: res.token, user: res.user},
+      });
+    } catch (error) {
+      dispatchAuth({
+        type: ActionTypeUser.errorFetch,
+        payload: {message: error},
+      });
+    }
   }
 
   useEffect(() => {
-    GetAuth();
-  }, []);
+    if (!stateAuth.state) {
+      GetAuth();
+    }
+  }, [stateAuth.state]);
 
   return (
     <AuthContext.Provider value={{stateAuth, dispatchAuth}}>

@@ -21,7 +21,7 @@ const SplashScreen = () => {
         backgroundColor: '#6B705C',
         alignItems: 'center',
       }}>
-      {!stateLocation.state && <AlertComponent pressOk={Location} />}
+      {/* {!stateLocation.state && <AlertComponent pressOk={Location} />} */}
       <Text style={{fontWeight: '500', color: 'white', fontSize: 50}}>
         Story Life
       </Text>

@@ -1,10 +1,11 @@
 import { View, Text, Button, FlatList, ScrollView, Modal } from 'react-native'
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useContext, useState } from 'react'
 import AppAxios from '../../Utils/AppAxios'
 // import TopNavScreen from '../../Components/TopNav'
 // import CardTimelineComponent from '../../Components/CardTimeline'
 import DataTimeline from '../../../dummy/DataTimeline'
 import SplashScreen from '../Splash Screen'
+import { AuthContext } from '../../Context/AuthContext'
 // import ModalScreen from '../../Components/Modal'
 const ModalScreen = React.lazy(() => import('../../Components/Modal'))
 const CardTimelineComponent = React.lazy(() => import('../../Components/CardTimeline'))
@@ -12,7 +13,8 @@ const TopNavScreen = React.lazy(() => import('../../Components/TopNav'))
 
 const TimelineScreen = () => {
   const [data,setData] = useState([])
-  const [showModal,setShowModal] = useState({img:'',state:false})
+  const {stateAuth,dispatchAuth} = useContext(AuthContext)
+  const [showModal,setShowModal] = useState({img:'https://www.freeiconspng.com/thumbs/load-icon-png/load-icon-png-8.png',state:false})
 
   function show (e){
     setShowModal({...showModal,img:e,state:!showModal.state})

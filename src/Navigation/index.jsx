@@ -73,7 +73,7 @@ const Navigation = () => {
             name="Splash"
             component={SplashScreen}
           />
-        ) : !stateAuth?.user?.token ? (
+        ) : !stateAuth?.state ? (
           <>
             <Tab.Screen
               options={{headerShown: false, tabBarStyle: {display: 'none'}}}

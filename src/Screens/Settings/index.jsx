@@ -4,23 +4,27 @@ import NavbarComponent from '../../Components/Navbar'
 import { AuthContext } from '../../Context/AuthContext'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import AppAxios from '../../Utils/AppAxios'
+import LogoutFunction from '../../Utils/Logout/Logout'
 const menu = ['account','payment','logout',]
 
 
 const SettingScreen = ({navigation}) => {
     const {auth,setAuth} = useContext(AuthContext)
+    
 
     function change(data){
         switch (data.item) {
             case 'payment':
                 return console.log('logout');
             case 'logout':
-                    AppAxios.delete(`/auth/logout`).then((res) => {
-                        AsyncStorage.removeItem('auth')
-                        return setAuth({user:false,token:false,loading:false})
-                    }).catch((err) => console.log(err.response))
+                    const logout = LogoutFunction()
+                    return console.log('///////',logout)
+                    // AppAxios.delete(`/auth/logout`).then((res) => {
+                    //     AsyncStorage.removeItem('auth')
+                    //     return setAuth({user:false,token:false,loading:false})
+                    // }).catch((err) => console.log(err.response))
             default:
-                break;
+                data
         }
     }
   return (
