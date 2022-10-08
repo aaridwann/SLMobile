@@ -19,7 +19,7 @@ const LoginScreen = ({route,navigation}) => {
 
   async function Login (){
     setLoading(true)
-      const res = await axios.post(LOGIN_URL,data)
+      await axios.post(LOGIN_URL,data)
       .then(async res => {
         const {token} = res.data
         const decode = jwt_decode(token)
@@ -40,8 +40,7 @@ const LoginScreen = ({route,navigation}) => {
     },3000)
   },[message])
 
-  console.log(data);
-  console.log(email);
+
 
   return loading ?
   <SplashScreen/>

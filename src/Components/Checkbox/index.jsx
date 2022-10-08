@@ -12,7 +12,7 @@ const CheckBoxComponent = ({data,value}) => {
       iconStyle={{borderColor: 'red'}}
       innerIconStyle={{borderWidth: 2}}
       textStyle={{fontFamily: 'JosefinSans-Regular'}}
-      onPress={e => value(e, data)}
+      onPress={value}
     />
   );
 };

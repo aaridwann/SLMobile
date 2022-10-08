@@ -6,6 +6,8 @@ import SettingScreen from '../../Screens/Settings'
 import DirectMessageScreen from '../../Screens/Direct Message'
 import FollowerScreen from '../../Screens/Follower'
 import FollowingScreen from '../../Screens/Following'
+import AddProjectScreen from '../../Screens/Add Project'
+import AddEventScreen from '../../Screens/Add Event'
 const Stack = createNativeStackNavigator()
 
 const ProfileStack = () => {
@@ -13,7 +15,6 @@ const ProfileStack = () => {
     <Stack.Navigator screenOptions={{headerShown:false,statusBarColor:'#6B705C',animation:'slide_from_right'}}>
         <Stack.Screen name="ProfileClient" component={ProfileClientScreen} />
         <Stack.Screen name="Setting" component={SettingScreen} />
-        <Stack.Screen  options={{tabBarStyle:{display:'none'}}} name="DirectMessage" component={DirectMessageScreen} />
         <Stack.Screen options={{headerShown:false}} name="Follower" component={FollowerScreen} />
         <Stack.Screen options={{headerShown:false}} name="Following" component={FollowingScreen} />
     </Stack.Navigator>

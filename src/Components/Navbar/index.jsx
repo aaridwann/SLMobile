@@ -1,10 +1,12 @@
 import {StyleSheet, useWindowDimensions, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import Ionicons  from 'react-native-vector-icons/Ionicons'
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function NavbarComponent({backgroundColor, title, navigation}) {
     const {width} = useWindowDimensions()
+    const navigate = useNavigation()
   return (
     <View
       style={{
@@ -16,7 +18,7 @@ export default function NavbarComponent({backgroundColor, title, navigation}) {
         width: '100%',
         justifyContent: 'center',
       }}>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={{alignSelf: 'flex-start', position:'absolute', left:4}}>
+      <TouchableOpacity onPress={() => navigate.goBack()} style={{alignSelf: 'flex-start', position:'absolute', left:4}}>
         <Ionicons name="arrow-back" size={40} color={backgroundColor == 'white' ? '#B7B7A4' : 'white'} />
       </TouchableOpacity>
       <Text

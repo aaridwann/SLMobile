@@ -1,4 +1,4 @@
-import {Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import CardA from './CardA';
 import LinearGradient from 'react-native-linear-gradient';
@@ -10,7 +10,8 @@ import dummyEvent from '../../../../dummy/event';
 
 const ProfileClientScreen = ({navigation}) => {
   return (
-    <View style={{flex: 1, justifyContent: 'flex-start', alignItems: 'center'}}>
+    <View style={{flex: 1, backgroundColor:'white', justifyContent: 'flex-start', alignItems: 'center'}}>
+     
       <View style={{alignSelf: 'flex-start',flexDirection:'row', justifyContent:'space-between', width: '100%', height: '50%'}}>
         
         <View style={{ width:'75%'}}>
@@ -23,32 +24,38 @@ const ProfileClientScreen = ({navigation}) => {
             <Text style={{color:'#B7B7A4', fontWeight:'700'}}>Setting</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.push('DirectMessage')} style={{alignItems:'center'}}>
+          <TouchableOpacity onPress={() => navigation.navigate('MoreStack',{screen:'DirectMessage'})} style={{alignItems:'center'}}>
             <Ionicons name={"chatbubbles-outline"} size={30} color={'#B7B7A4'} />
             <Text style={{color:'#B7B7A4', fontWeight:'700'}}>Message</Text>
           </TouchableOpacity>
         </View>
 
       </View>
-      
+
+      {/*== tengah  */}
 
       <LinearGradient colors={['#B7B7A4', '#6B705C']} style={styles.card}>
         <View style={{ flexDirection:'row', alignItems:'center'}}>
-        <Pressable onPress={() => console.log('Add')}>
+        <Pressable style={{flexDirection:'row', alignItems:'center'}} 
+        onPress={() => navigation.navigate('MoreStack',{screen:'AddEvent'})}>
           <Ionicons name={"add-circle"} size={40} color={'white'} />
-        </Pressable>
           <Text style={styles.titleCard}>Project Event</Text>
+        </Pressable>
         </View>
             
 
-          <ScrollView style={styles.cardList}>
-            {dummyEvent.map((data,i) => (
-                <Pressable onPress={() => console.log(data)} key={i}>
-                    <CardEvent image={data.image} date={data.date} category={data.category}/>
+            <FlatList 
+              contentContainerStyle={styles.cardList}
+              style={{flex:1, width:'100%'}}
+              data={dummyEvent}
+              renderItem={({item}) => (
+                <Pressable onPress={() => console.log(item)}>
+                  <CardEvent image={item.image} date={item.date} category={item.category}/>
                 </Pressable>
-            ))}
+              )}
+            />
 
-          </ScrollView>
+
       </LinearGradient>
     </View>
   );
@@ -60,7 +67,7 @@ const styles = StyleSheet.create({
   card: {
     width: '100%',
     marginTop: 20,
-    borderTopLeftRadius: 150,
+    borderTopLeftRadius: 120,
     flex:1,
     justifyContent:'center',
     alignItems:'flex-end',

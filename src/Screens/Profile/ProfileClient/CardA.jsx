@@ -2,12 +2,13 @@ import {Image, Pressable, StyleSheet, Text, TouchableOpacity, View} from 'react-
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 const bio = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut impedit quas aperiam sint quasi quibusdam quidem? Fugiat, impedit illo reiciendis distinctio ipsam quo quos mollitia. Explicabo facere eius aspernatur qui.'
-
+const mainCol = '#B7B7A4'
+const secondCol = '#6B705C'
 const CardA = ({navigation}) => {
 
 
   return (
-    <LinearGradient colors={['#B7B7A4','#6B705C']} style={styles.cont}>
+    <LinearGradient colors={['#B7B7A4', '#6B705C']} style={styles.cont}>
         {/* === First === */}
       <View style={styles.first}>
         <Image
@@ -58,11 +59,10 @@ export default React.memo(CardA);
 const styles = StyleSheet.create({
   cont: {
     flex: 1,
-    backgroundColor: 'blue',
     borderRadius: 5,
     paddingVertical:5,
-    borderBottomRightRadius: 250,
-    shadowColor: "#000",
+    borderBottomRightRadius: 200,
+    shadowColor: secondCol,
     shadowOffset: {
       width: 0,
       height: 5,
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
+    color:mainCol
   },
   name:{
     color:'white',

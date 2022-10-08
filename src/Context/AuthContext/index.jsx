@@ -1,33 +1,31 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {createContext, useEffect, useState} from 'react';
+import React, {createContext, useEffect, useReducer, useState} from 'react';
 import Navigation from '../../Navigation';
 import ChatService from '../../Utils/ChatService';
+import AuthReducer, {
+  ActionTypeUser,
+  initialUserState,
+} from '../Reducer/AuthReducer';
 
 export const AuthContext = createContext();
 
-function AuthProvider() {
-  const [auth, setAuth] = useState({user:{},token:null,loading:true});
+function AuthProvider({children}) {
+  const [stateAuth, dispatchAuth] = useReducer(AuthReducer, initialUserState);
 
-  async function GetAuth(){
-    try {
-      const res = await AsyncStorage.getItem('auth')
-      if(!res) return setAuth({...data, user:false,token:false,loading:false})
-      
-      const data = JSON.parse(res)
-      ChatService()
-      return setAuth({...data, user:data.user,token:data.token,loading:false})
-    } catch (error) {
-      return setAuth({...data, user:false,token:false,loading:false})
-    }
+  async function GetAuth() {
+    const res = await AsyncStorage.getItem('auth');
+    if (!res)
+      return dispatchAuth({type: ActionTypeUser.doneFetch, payload: null});
+    return dispatchAuth({type: ActionTypeUser.doneFetch, payload: res});
   }
-  
-  useEffect(()=> {
-    GetAuth()
-  },[])
+
+  useEffect(() => {
+    GetAuth();
+  }, []);
 
   return (
-    <AuthContext.Provider value={{auth, setAuth}}>
-      <Navigation />
+    <AuthContext.Provider value={{stateAuth, dispatchAuth}}>
+      {children}
     </AuthContext.Provider>
   );
 }

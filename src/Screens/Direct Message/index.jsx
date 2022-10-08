@@ -4,6 +4,7 @@ import NavbarComponent from '../../Components/Navbar'
 import ChatComponents from '../../Components/Item Chat'
 import dummyChat from '../../../dummy/chat'
 import ChatService from '../../Utils/ChatService'
+import { FlashList } from '@shopify/flash-list'
 
 const DirectMessageScreen = ({navigation}) => {
     const [message, setMessage] = useState('')
@@ -30,19 +31,23 @@ const DirectMessageScreen = ({navigation}) => {
     
     <View style={{ alignItems:'center',flex:1}}>
         <NavbarComponent navigation={navigation} backgroundColor={'#B7B7A4'} title={'Direct Message'}/>
-        <View style={{width:'100%', paddingBottom:'20%', justifyContent:'center',}}>
+        <View style={{width:'100%', height:'100%', paddingBottom:'10%', justifyContent:'center',}}>
            
         {/*==== Message ====  */}
-            <FlatList
+        <View style={{ height:'85%', width: '100%' }}>
+
+            <FlashList
+                estimatedItemSize={300}
                 // inverted={true}
                 bounces={true}
                 showsVerticalScrollIndicator={false}
                 centerContent={true}
                 // data={[...dataChat].reverse()}
                 data={dataChat}
-                renderItem={(data) => <ChatComponents id={data.item.id} message={data.item.message} date={data.item.date} />}
+                renderItem={({item}) =>  <ChatComponents id={item.id} message={item.message} date={item.date} />}
                 keyExtractor={(data,i) => i}
             />
+                </View>
 
         {/* === Keyboard ==== */}
             <View style={{ width:'100%', height:100, backgroundColor:'#B7B7A4', flexDirection:'row', alignItems:'center', justifyContent:'space-evenly'}}>
